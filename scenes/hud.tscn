@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0whs73be316v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5onam"]
+bg_color = Color(0, 0, 0, 1)
+skew = Vector2(-0.765, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i064w"]
+bg_color = Color(1, 0, 0, 1)
+skew = Vector2(-0.765, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70ixr"]
+bg_color = Color(0, 0, 0, 1)
+skew = Vector2(-0.765, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lqom"]
+bg_color = Color(0, 0, 1, 1)
+skew = Vector2(-0.765, 0)
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBars" type="VBoxContainer" parent="Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0487778
+anchor_top = 0.0863827
+anchor_right = 0.0487778
+anchor_bottom = 0.0863827
+offset_left = -0.192001
+offset_top = 0.0240002
+offset_right = 391.808
+offset_bottom = 64.024
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="Hp" type="ProgressBar" parent="Main/ProgressBars"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_5onam")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i064w")
+value = 41.96
+show_percentage = false
+
+[node name="Movement" type="ProgressBar" parent="Main/ProgressBars"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_70ixr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1lqom")
+value = 20.17
+show_percentage = false

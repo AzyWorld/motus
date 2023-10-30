@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfgb5tfodipgk"]
+
+[ext_resource type="Script" path="res://scripts/NPC.gd" id="1_qqg8t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8s1jb"]
+size = Vector2(64, 112)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wprxo"]
+font_size = 20
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2c3b"]
+size = Vector2(192, 112)
+
+[node name="NPC" type="CharacterBody2D"]
+script = ExtResource("1_qqg8t")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-32, 56, -32, -56, 32, -56, 32, 56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8s1jb")
+
+[node name="Dialogue" type="Panel" parent="."]
+visible = false
+offset_left = -96.0
+offset_top = -184.0
+offset_right = 96.0
+offset_bottom = -64.0
+
+[node name="Label" type="Label" parent="Dialogue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_wprxo")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="InteractingZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractingZone"]
+shape = SubResource("RectangleShape2D_r2c3b")
