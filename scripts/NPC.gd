@@ -12,5 +12,7 @@ func _process(_delta):
 		if body.is_in_group("player") and Input.is_action_just_pressed("interact"):
 			current_word += 1
 			$Dialogue.visible = true
-			$Dialogue/Label.text = dialogue[current_word]
+			$Dialogue/Label.text = dialogue[current_word].split("{")[0]
+			if dialogue[current_word].split("{").size() > 1:
+				Global.call(dialogue[current_word].split("{")[1])
 		

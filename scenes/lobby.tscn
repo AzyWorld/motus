@@ -6,7 +6,8 @@
 [node name="Lobby" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_fefl7")]
+can_shot = false
 
 [node name="Tutor" parent="." instance=ExtResource("2_lts0n")]
-position = Vector2(522, 250)
-dialogue = "Привет~Хочешь пройти обучение?~Поехали!"
+position = Vector2(434, 238)
+dialogue = "Привет~Хочешь пройти обучение?~Поехали! (Нажми E)~-{startTutorial"
