@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 500
+
+var hp = 100
 
 @export var can_shot = true
 
@@ -23,10 +25,13 @@ func _physics_process(_delta):
 	$Camera2D.offset = (get_global_mouse_position()-position)/10
 	
 	move_and_slide()
-	
+
+func _process(_delta):
 	if Input.is_action_just_pressed("click") and can_shot:
 		var bullet = preload("res://scenes/bullet.tscn").instantiate()
 		bullet.look_at(get_global_mouse_position()-position)
 		bullet.rotation_degrees += 90
 		bullet.position = position
 		get_parent().add_child(bullet)
+	if get_parent().has_node("HUD"):
+		get_parent().get_node("HUD/Main/ProgressBars/Hp").value = hp

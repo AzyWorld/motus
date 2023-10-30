@@ -1,7 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://dodlg78rohwbs"]
+[gd_scene load_steps=6 format=3 uid="uid://0mvp5slxlypv"]
 
 [ext_resource type="PackedScene" uid="uid://di32dvmtw5441" path="res://scenes/player.tscn" id="1_jgtop"]
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_jvxoc"]
+[ext_resource type="PackedScene" uid="uid://dfgb5tfodipgk" path="res://scenes/npc.tscn" id="2_l8f8o"]
+[ext_resource type="PackedScene" uid="uid://c0whs73be316v" path="res://scenes/hud.tscn" id="4_luxqp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3djq"]
+size = Vector2(144, 64)
 
 [node name="Tutorial" type="Node2D"]
+script = ExtResource("1_jvxoc")
 
 [node name="Player" parent="." instance=ExtResource("1_jgtop")]
+position = Vector2(576, 326)
+
+[node name="NPC" parent="." instance=ExtResource("2_l8f8o")]
+position = Vector2(1024, 136)
+dialogue = "Ты можешь стрелять, кликая мышью~Попробуй!{SpawnEnemies"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+position = Vector2(72, 0)
+polygon = PackedVector2Array(0, 64, 1088, 64, 1088, 0, -72, 0, -72, 704, 944, 704, 944, 640, -8, 640)
+
+[node name="Polygon2D2" type="Polygon2D" parent="StaticBody2D"]
+position = Vector2(72, 640)
+polygon = PackedVector2Array(0, 64, 944, 64, 944, 0, -72, 0, -72, 704, 1152, 704, 1152, 0, 1088, 0, 1088, 640, -8, 640)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(0, 704, 1016, 704, 1016, 640, 64, 640, 72, 64, 1160, 64, 1160, 640, 1184, 640, 1184, 0, 0, 0)
+metadata/_edit_lock_ = true
+
+[node name="Door" type="CharacterBody2D" parent="."]
+position = Vector2(1096, 672)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_h3djq")
+
+[node name="Polygon2D" type="Polygon2D" parent="Door"]
+polygon = PackedVector2Array(-80, 32, -80, -32, 64, -32, 64, 32)
+
+[node name="HUD" parent="." instance=ExtResource("4_luxqp")]
+
+[node name="Enemies" type="Node2D" parent="."]
+visible = false
+
+[node name="NPC2" parent="Enemies" groups=["enemy"] instance=ExtResource("2_l8f8o")]
+position = Vector2(1576, 160)
+
+[node name="NPC3" parent="Enemies" groups=["enemy"] instance=ExtResource("2_l8f8o")]
+position = Vector2(1576, 328)
+
+[node name="NPC4" parent="Enemies" groups=["enemy"] instance=ExtResource("2_l8f8o")]
+position = Vector2(1576, 488)
+
+[node name="NPC2" parent="." instance=ExtResource("2_l8f8o")]
+position = Vector2(128, 768)
+dialogue = "Перемещение во времени ограничено~Современные технологии позволяют избегать урона, но тратят энергию, на которой работает твой браслет~В наших межвременных магазинах ты можешь что-нибудь купить, потратив все тот же заряд~Если ты потратишь всю энергию, вернуться назад ты не сможешь, что равносильно провалу задания~Удачи!~-{ExitTutorial"
+custom_size = Vector2(250, 200)
